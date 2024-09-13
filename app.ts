@@ -3,15 +3,15 @@ const num2Element = document.getElementById("num2") as HTMLInputElement;
 const btnElement = document.querySelector("button")!;
 // const paraElement = document.querySelector("p") || null;
 
-const numResults: number[] = [];
-const textResult: string[] = [];
+const numResults: Array<number> = [];
+const textResult: Array<string> = [];
 
 type NumOrString = number | string;
-type Result = { val: number; timestamp: Date }
+type Result = { val: number; timestamp: Date };
 
 interface ResultObj {
-  val: number,
-  timestamp: Date
+  val: number;
+  timestamp: Date;
 }
 
 function add(num1: NumOrString, num2: NumOrString) {
@@ -38,4 +38,14 @@ btnElement.addEventListener("click", () => {
   console.log(numResults, textResult);
 
   printResult({ val: result as number, timestamp: new Date() });
+});
+
+const myPromise = new Promise<string>((resolve, reject) => {
+  setTimeout(() => {
+    resolve("It's worked!");
+  }, 1000);
+});
+
+myPromise.then((result) => {
+  console.log(result.split("w"));
 });
