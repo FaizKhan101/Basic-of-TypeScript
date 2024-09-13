@@ -1,11 +1,22 @@
-import { Router } from "express"
+import { Router } from "express";
 
-const router = Router()
+import { Todo } from "../models/todo";
 
-const todos = []
+const router = Router();
+
+const todos: Todo[] = [];
 
 router.get("/", (req, res, next) => {
-    res.status(200).json({todos: todos})
-})
+  res.status(200).json({ todos: todos });
+});
 
-export default router
+router.post("/todo", (req, res, next) => {
+  const newTodo: Todo = {
+    id: new Date().toISOString(),
+    text: req.body.text,
+  };
+
+  todos.push(newTodo)
+});
+
+export default router;
